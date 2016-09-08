@@ -14,7 +14,7 @@ import java.util.Random;
  * Created by ikohli on 8/11/2016.
  */
 public class Level {
-    int rowNumber = 5;
+    int rowNumber = 10;
     Bulb[][] bulbTable;
     Random rand;
     LevelRenderer levelRenderer;

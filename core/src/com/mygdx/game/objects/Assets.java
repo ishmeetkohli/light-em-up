@@ -21,9 +21,10 @@ public class Assets {
         gameScreenAtlas = assetManager.get("packedImages/GameScreen.atlas", TextureAtlas.class);
 
         bulb_on = gameScreenAtlas.createSprite("bulb_on");
-        bulb_on.setScale(0.3f * LevelRenderer.MULTIPLICATION_FACTOR);
+        bulb_on.setSize(0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_on.getWidth(), 0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_on.getHeight());
+
         bulb_off = gameScreenAtlas.createSprite("bulb_off");
-        bulb_off.setScale(0.3f * LevelRenderer.MULTIPLICATION_FACTOR);
+        bulb_off.setSize(0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_off.getWidth(), 0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_off.getHeight());
     }
 
     public static void draw(Sprite sprite, float x, float y, SpriteBatch batch){

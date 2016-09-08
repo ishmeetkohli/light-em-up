@@ -8,14 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.logic.Level;
-import com.mygdx.game.logic.LevelRenderer;
 import com.mygdx.game.objects.Assets;
-import com.mygdx.game.objects.Bulb;
-import com.mygdx.game.tools.OverlapTester;
-
-import java.util.ArrayList;
 
 /**
  * Created by ikohli on 8/19/2016.
@@ -55,7 +49,10 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+        Gdx.gl20.glEnable(GL20.GL_TEXTURE_2D);
+
         batch.setProjectionMatrix(guiCam.combined);
         batch.enableBlending();
         batch.begin();
