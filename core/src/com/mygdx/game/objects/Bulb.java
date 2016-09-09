@@ -1,7 +1,8 @@
 package com.mygdx.game.objects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Utils.Colors;
 import com.mygdx.game.tools.GameObject;
 
 /**
@@ -9,8 +10,9 @@ import com.mygdx.game.tools.GameObject;
  */
 public class Bulb extends GameObject {
 
-    public static final float BULB_WIDTH = Assets.bulb_off.getWidth();
-    public static final float BULB_HEIGHT = Assets.bulb_off.getHeight();
+    public static final float BULB_WIDTH = Assets.circle.getWidth();
+    public static final float BULB_HEIGHT = Assets.circle.getHeight();
+
     boolean isOn;
     int rowIndex;
     int columnIndex;
@@ -30,8 +32,9 @@ public class Bulb extends GameObject {
     }
 
     public void render(SpriteBatch batch) {
-        Sprite bulb = isOn ? Assets.bulb_on : Assets.bulb_off;
-        Assets.draw(bulb, getPosition().x, getPosition().y, batch);
+        Color color = isOn ? Color.RED : Colors.CYAN;
+        Assets.circle.setColor(color);
+        Assets.draw(Assets.circle, getPosition().x, getPosition().y, batch);
     }
 
     public void toggle() {

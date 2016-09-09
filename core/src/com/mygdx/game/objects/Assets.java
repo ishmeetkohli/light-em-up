@@ -17,6 +17,8 @@ public class Assets {
     public static Sprite bulb_on;
     public static Sprite bulb_off;
 
+    public static Sprite circle;
+
     public static void load(AssetManager assetManager) {
         gameScreenAtlas = assetManager.get("packedImages/GameScreen.atlas", TextureAtlas.class);
 
@@ -25,6 +27,9 @@ public class Assets {
 
         bulb_off = gameScreenAtlas.createSprite("bulb_off");
         bulb_off.setSize(0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_off.getWidth(), 0.3f * LevelRenderer.MULTIPLICATION_FACTOR * bulb_off.getHeight());
+
+        circle = gameScreenAtlas.createSprite("circle");
+        circle.setSize(0.5f * LevelRenderer.MULTIPLICATION_FACTOR * circle.getWidth(), 0.5f * LevelRenderer.MULTIPLICATION_FACTOR * circle.getHeight());
     }
 
     public static void draw(Sprite sprite, float x, float y, SpriteBatch batch){

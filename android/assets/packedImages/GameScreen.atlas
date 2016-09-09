@@ -1,20 +1,27 @@
 
 GameScreen.png
-size: 128,512
+size: 256,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bulb_off
   rotate: false
-  xy: 2, 2
+  xy: 96, 56
   size: 91, 155
   orig: 120, 160
   offset: 15, 2
   index: -1
 bulb_on
   rotate: false
-  xy: 2, 159
+  xy: 2, 54
   size: 92, 157
   orig: 120, 160
   offset: 14, 1
+  index: -1
+circle
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
   index: -1
