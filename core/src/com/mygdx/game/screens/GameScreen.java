@@ -3,6 +3,7 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,7 +22,8 @@ public class GameScreen implements Screen {
 
     SpriteBatch batch;
     Level level;
-    public ShapeRenderer shape;
+    ShapeRenderer shape;
+    FPSLogger fpsLogger;
     OrthographicCamera guiCam;
 
     AssetManager assetManager;
@@ -38,6 +40,7 @@ public class GameScreen implements Screen {
         level = new Level();
         this.batch = batch;
         shape = new ShapeRenderer();
+        fpsLogger = new FPSLogger();
     }
 
     @Override
@@ -58,6 +61,7 @@ public class GameScreen implements Screen {
         batch.begin();
         level.render(batch, shape);
         batch.end();
+        fpsLogger.log();
     }
 
     public void update(float delta) {

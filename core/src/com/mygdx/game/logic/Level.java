@@ -15,6 +15,7 @@ import java.util.Random;
 public class Level {
     public static final int GAME_INITIALIZING = 0;
     public static final int GAME_RUNNING = 1;
+    public static final int GAME_TOGGLING = 2;
 
     int rowNumber = 10;
     Bulb[][] bulbTable;
@@ -22,6 +23,7 @@ public class Level {
     LevelRenderer levelRenderer;
     Vector3 touchPoint;
     int state;
+    Bulb toggledBulb;
 
     public Level() {
         levelRenderer = new LevelRenderer();
@@ -31,16 +33,15 @@ public class Level {
         initTable();
 
         state = GAME_INITIALIZING;
-
     }
 
     private void initTable() {
-        for (int i = 1; i <= rowNumber; i++) {
-            for (int j = 1; j <= rowNumber; j++) {
+        for (int i = 0; i < rowNumber; i++) {
+            for (int j = 0; j < rowNumber; j++) {
                 Bulb bulb = new Bulb(i, j);
                 bulb.setState(false);
                 bulb.setIndexes(i, j);
-                bulbTable[i - 1][j - 1] = bulb;
+                bulbTable[i][j] = bulb;
             }
         }
     }
@@ -59,30 +60,58 @@ public class Level {
         levelRenderer.render(batch, shape, bulbTable);
     }
 
-    float stateTime = 0;
-    public void randomize(float deltaTime) {
-        while (stateTime < 4) {
-            if (stateTime % 0.25 == 0) {
-                toggleBulbs(rand.nextInt(rowNumber), rand.nextInt(rowNumber));
-            }
-            stateTime += deltaTime;
-            System.out.println(stateTime);
+    float stateTime = 1;
+
+    public void randomize() {
+        if (stateTime % 20 == 0) {
+            toggleBulbs(rand.nextInt(rowNumber), rand.nextInt(rowNumber));
         }
-        state = GAME_RUNNING;
+        if (stateTime > 360) {
+            state = GAME_RUNNING;
+        }
+        stateTime++;
     }
 
     public void update(float delta) {
-        switch(state) {
-            case GAME_INITIALIZING :
+        switch (state) {
+            case GAME_INITIALIZING:
                 updateInitializing(delta);
                 break;
-            case GAME_RUNNING :
+            case GAME_RUNNING:
                 updateRunning(delta);
+                break;
+            case GAME_TOGGLING:
+                updateToggling(delta);
+                break;
         }
     }
 
-    public void updateInitializing(float deltaTime){
-        randomize(deltaTime);
+    int rowFwd, rowBack, columnFwd, columnBack;
+    private void updateToggling(float delta) {
+
+        if (rowFwd < rowNumber) {
+            bulbTable[rowFwd++][toggledBulb.getColumnIndex()].toggle();
+        }
+
+        if (rowBack >= 0) {
+            bulbTable[rowBack--][toggledBulb.getColumnIndex()].toggle();
+        }
+
+        if (columnFwd < rowNumber) {
+            bulbTable[toggledBulb.getRowIndex()][columnFwd++].toggle();
+        }
+
+        if (columnBack >= 0) {
+            bulbTable[toggledBulb.getRowIndex()][columnBack--].toggle();
+        }
+
+        if(rowFwd == rowNumber && rowBack < 0 && columnFwd == rowNumber && columnBack < 0) {
+            state = GAME_RUNNING;
+        }
+    }
+
+    public void updateInitializing(float deltaTime) {
+        randomize();
     }
 
     public void updateRunning(float deltaTime) {
@@ -93,7 +122,13 @@ public class Level {
             for (Bulb[] bulbRow : bulbTable) {
                 for (Bulb bulb : bulbRow) {
                     if (OverlapTester.pointInRectangle(bulb.getBounds(), touchPoint.x, touchPoint.y)) {
-                        toggleBulbs(bulb.getRowIndex(), bulb.getColumnIndex());
+                        bulb.toggle();
+                        toggledBulb = bulb;
+                        rowFwd = toggledBulb.getRowIndex();
+                        rowBack = toggledBulb.getRowIndex();
+                        columnFwd = toggledBulb.getColumnIndex();
+                        columnBack = toggledBulb.getColumnIndex();
+                        state = GAME_TOGGLING;
                     }
                 }
             }
