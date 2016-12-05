@@ -21,6 +21,8 @@ public class PackTextures {
 
 	public static void main(String[] args) {
 		packImage("GameScreen", "packedImages/", true, "GameScreen");
+		packImage("SplashScreen", "packedImages/", true, "SplashScreen");
+
 		System.out.println("done");
 	}
 }

@@ -1,0 +1,13 @@
+
+SplashScreen.png
+size: 128,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+play
+  rotate: false
+  xy: 2, 2
+  size: 118, 132
+  orig: 118, 132
+  offset: 0, 0
+  index: -1

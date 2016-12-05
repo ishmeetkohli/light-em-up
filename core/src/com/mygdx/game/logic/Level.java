@@ -17,7 +17,7 @@ public class Level {
     public static final int GAME_RUNNING = 1;
     public static final int GAME_TOGGLING = 2;
 
-    int rowNumber = 10;
+    int rowNumber = 5;
     Bulb[][] bulbTable;
     Random rand;
     LevelRenderer levelRenderer;

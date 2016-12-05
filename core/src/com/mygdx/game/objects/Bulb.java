@@ -2,8 +2,8 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Utils.Colors;
 import com.mygdx.game.tools.GameObject;
+import com.mygdx.game.utils.Colors;
 
 /**
  * Created by ikohli on 8/17/2016.
