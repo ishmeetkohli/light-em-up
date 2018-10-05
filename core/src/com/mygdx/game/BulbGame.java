@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.mygdx.game.screens.SplashScreen;
+import com.mygdx.game.screens.GameScreen;
 
 public class BulbGame extends Game implements InputProcessor {
     SpriteBatch batch;
@@ -17,8 +17,8 @@ public class BulbGame extends Game implements InputProcessor {
         Gdx.input.setCatchBackKey(true);
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-//		screen = new GameScreen(batch);
-        screen = new SplashScreen(batch, shapeRenderer);
+		screen = new GameScreen(batch);
+//        screen = new SplashScreen(batch, shapeRenderer);
     }
 
     @Override

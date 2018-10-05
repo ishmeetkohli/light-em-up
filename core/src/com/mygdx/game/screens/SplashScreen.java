@@ -31,7 +31,7 @@ public class SplashScreen implements Screen {
 
     public TextureAtlas splashAtlas;
 
-//    Screen current, next;
+    Screen current, next;
 
     public SplashScreen(SpriteBatch batch, ShapeRenderer shapeRenderer) {
         guiCam = new OrthographicCamera(Constants.FRUSTUM_WIDTH, Constants.FRUSTUM_HEIGHT);
@@ -56,8 +56,8 @@ public class SplashScreen implements Screen {
     private void update(float delta) {
         if (assetManager.update()) {
             Assets.load(assetManager);
-//            next = new GameScreen(batch);
-//            game.setScreen(next);
+            next = new GameScreen(batch);
+            game.setScreen(next);
         }
     }
 
