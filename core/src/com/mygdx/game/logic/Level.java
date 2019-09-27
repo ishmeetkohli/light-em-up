@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.objects.Bulb;
+import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.tools.OverlapTester;
 
 import java.util.Random;
@@ -17,7 +18,8 @@ public class Level {
     public static final int GAME_RUNNING = 1;
     public static final int GAME_TOGGLING = 2;
 
-    int rowNumber = 5;
+    int rowNumber = 10;
+    float objectSpacing;
     Bulb[][] bulbTable;
     Random rand;
     LevelRenderer levelRenderer;
@@ -30,15 +32,16 @@ public class Level {
         bulbTable = new Bulb[rowNumber][rowNumber];
         touchPoint = new Vector3();
         rand = new Random();
-        initTable();
-
+        objectSpacing = LevelRenderer.FRUSTUM_WIDTH / (float)(rowNumber + 1);
         state = GAME_INITIALIZING;
+
+        initTable();
     }
 
     private void initTable() {
         for (int i = 0; i < rowNumber; i++) {
             for (int j = 0; j < rowNumber; j++) {
-                Bulb bulb = new Bulb(i, j);
+                Bulb bulb = new Bulb((i + 1) * objectSpacing, (j + 1) * objectSpacing);
                 bulb.setState(false);
                 bulb.setIndexes(i, j);
                 bulbTable[i][j] = bulb;

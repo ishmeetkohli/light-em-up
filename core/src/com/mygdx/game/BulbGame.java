@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.screens.GameScreen;
+import com.mygdx.game.screens.SplashScreen;
 
 public class BulbGame extends Game implements InputProcessor {
     SpriteBatch batch;

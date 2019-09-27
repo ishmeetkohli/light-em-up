@@ -18,7 +18,7 @@ public class Bulb extends GameObject {
     int columnIndex;
 
     public Bulb(float x, float y) {
-        super(x + 1, y + 1, BULB_WIDTH, BULB_HEIGHT);
+        super(x, y, BULB_WIDTH, BULB_HEIGHT);
         isOn = false;
     }
 
